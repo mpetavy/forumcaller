@@ -99,14 +99,14 @@ func main() {
 	sessionName := ""
 
 	if isWindows() {
-		v,b := os.LookupEnv("SESSIONNAME")
+		v, b := os.LookupEnv("SESSIONNAME")
 
 		if b {
 			sessionName = "-" + strings.ToUpper(v)
 		}
 	}
 
-	filename := filepath.Join(usr.HomeDir, fmt.Sprintf(".forumlauncher%s.properties",sessionName))
+	filename := filepath.Join(usr.HomeDir, fmt.Sprintf(".forumlauncher%s.properties", sessionName))
 
 	log.Printf("launcher file: %s", filename)
 
@@ -123,7 +123,10 @@ func main() {
 		cmdLine = "-show"
 	}
 
-	fmt.Fprintf(file, "%s", cmdLine)
+	_, err = fmt.Fprintf(file, "%s", cmdLine)
+	if err != nil {
+		panic(err)
+	}
 
 	log.Printf("launcher parameter: %s", cmdLine)
 
