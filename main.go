@@ -4,7 +4,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -40,7 +39,7 @@ func init() {
 		panic(err)
 	}
 
-	files, err := ioutil.ReadDir(wd)
+	files, err := os.ReadDir(wd)
 	if err != nil {
 		panic(err)
 	}
